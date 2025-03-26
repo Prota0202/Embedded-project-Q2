@@ -6,15 +6,17 @@
 // Pins
 #define IR_LEFT A0
 #define IR_RIGHT A1
+#define IR_CLIFF A2
 #define TRIGGER_PIN 9
 #define ECHO_PIN 10
 #define SERVO_PIN 3
 
 Motors motors;
-Sensors sensors(IR_LEFT, IR_RIGHT, TRIGGER_PIN, ECHO_PIN, SERVO_PIN);
+Sensors sensors(IR_LEFT, IR_RIGHT, IR_CLIFF,TRIGGER_PIN, ECHO_PIN, SERVO_PIN);
 PID pidController(1.5, 0.0, 0.5);
 
 const int obstacleThreshold = 15;
+const int cliffThreshold = 600;
 
 void setup() {
     Serial.begin(9600);
@@ -23,7 +25,17 @@ void setup() {
 
 void loop() {
     int distance = sensors.readDistance();
+    int cliffValue = sensors.readIRCliff();
+
     if (distance > 0 && distance <= obstacleThreshold) {
+        motors.stop();
+        motors.backward();
+        delay(500);
+        motors.stop();
+        return;
+    }
+    
+    if (cliffValue > cliffThreshold) {
         motors.stop();
         motors.backward();
         delay(500);
