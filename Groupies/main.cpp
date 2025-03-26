@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "../lib/Motors.h"
-#include "../lib/Sensors.h"
-#include "../lib/PID.h"
+#include "../Motors.h"
+#include "../Sensors.h"
+#include "../PID.h"
 
 // Pins definitions
 #define IR_LEFT A0

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/abdelbadi/Desktop/Embedded-project-Q2/Groupies",
+      "program": "/Users/abdelbadi/Desktop/Embedded-project-Q2/Groupies/build/Debug/outDebug"
+    }
+  ]
+}
