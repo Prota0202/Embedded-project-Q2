@@ -1,6 +1,6 @@
-#include "../lib/Motors.h"
-#include "../lib/Sensors.h"
-#include "../lib/PID.h"
+#include "../Motors.h"
+#include "../Sensors.h"
+#include "../PID.h"
 #include <Arduino.h>
 
 // Pins
