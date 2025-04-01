@@ -1,0 +1,36 @@
+name: Build and Test PID
+
+on:
+  push:
+    branches: [ Test ]
+  pull_request:
+    branches: [ Test ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        brew install cmake googletest
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+
+    - name: Build project
+      run: |
+        cd build
+        make
+
+    - name: Run tests
+      run: |
+        cd build
+        ./PIDTests
+
