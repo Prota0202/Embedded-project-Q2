@@ -6,15 +6,19 @@
 class Motors {
 public:
     Motors();
-    void forward();
-    void backward();
-    void right();
-    void left();
+    void init();
+    void forward(int speed = 150);
+    void backward(int speed = 150);
+    void right(int speed = 150);
+    void left(int speed = 150);
     void stop();
+    
+    // Rendre les moteurs publics
+    Adafruit_DCMotor* motorLEFT;   // Déclaration publique
+    Adafruit_DCMotor* motorRIGHT;  // Déclaration publique
+
 private:
     Adafruit_MotorShield AFMS;
-    Adafruit_DCMotor *motorLEFT;
-    Adafruit_DCMotor *motorRIGHT;
 };
 
 #endif

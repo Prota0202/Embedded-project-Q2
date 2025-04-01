@@ -1,40 +1,44 @@
 #include "Motors.h"
 
-Motors::Motors() : AFMS(), motorLEFT(AFMS.getMotor(3)), motorRIGHT(AFMS.getMotor(4)) {
-    AFMS.begin();
+Motors::Motors() : AFMS() {
+    // Ne rien faire ici, on initialise tout dans init()
 }
 
-void Motors::forward() {
-    motorLEFT->setSpeed(100);
-    motorRIGHT->setSpeed(100);
+void Motors::init() {
+    AFMS.begin();
+    motorLEFT = AFMS.getMotor(3);
+    motorRIGHT = AFMS.getMotor(4);
+}
+
+void Motors::forward(int speed) {
+    motorLEFT->setSpeed(speed);
+    motorRIGHT->setSpeed(speed);
     motorLEFT->run(FORWARD);
     motorRIGHT->run(FORWARD);
 }
 
-void Motors::backward() {
-    motorLEFT->setSpeed(100);
-    motorRIGHT->setSpeed(100);
+void Motors::backward(int speed) {
+    motorLEFT->setSpeed(speed);
+    motorRIGHT->setSpeed(speed);
     motorLEFT->run(BACKWARD);
     motorRIGHT->run(BACKWARD);
 }
 
-void Motors::right() {
-    motorLEFT->setSpeed(100);
-    motorRIGHT->setSpeed(100);
+void Motors::right(int speed) {
+    motorLEFT->setSpeed(speed);
+    motorRIGHT->setSpeed(speed);
     motorLEFT->run(FORWARD);
     motorRIGHT->run(BACKWARD);
 }
 
-void Motors::left() {
-    motorLEFT->setSpeed(100);
-    motorRIGHT->setSpeed(100);
+void Motors::left(int speed) {
+    motorLEFT->setSpeed(speed);
+    motorRIGHT->setSpeed(speed);
     motorLEFT->run(BACKWARD);
     motorRIGHT->run(FORWARD);
 }
 
 void Motors::stop() {
-    motorLEFT->setSpeed(0);
-    motorRIGHT->setSpeed(0);
     motorLEFT->run(RELEASE);
     motorRIGHT->run(RELEASE);
 }
