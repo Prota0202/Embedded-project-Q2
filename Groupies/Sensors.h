@@ -6,15 +6,20 @@
 
 class Sensors {
 public:
-    Sensors(int irLeftPin, int irRightPin, int trigPin, int echoPin, int servoPin);
+    Sensors(int irLeft, int irRight, int irCliff, int trig1, int echo1, int trig2, int echo2, int servoPin);
     int readIRLeft();
     int readIRRight();
-    int readDistance();
+    int readIRCliff();
+    int readDistance1();
+    int readDistance2();
+    void initServo();
     void setServoAngle(int angle);
 private:
-    int IR_LEFT, IR_RIGHT;
-    NewPing distanceSensor;
+    int IR_LEFT, IR_RIGHT, IR_CLIFF;
+    NewPing distanceSensor1;
+    NewPing distanceSensor2;
     Servo servo;
+    int servoPin;
 };
 
 #endif

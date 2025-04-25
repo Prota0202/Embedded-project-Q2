@@ -1,47 +1,44 @@
 #include "Motors.h"
-#include <Arduino.h>
 
-Motors::Motors() : AFMS(), motorLEFT(AFMS.getMotor(1)), motorRIGHT(AFMS.getMotor(2)) {
+Motors::Motors() : AFMS() {
+    
+}
+
+void Motors::init() {
     AFMS.begin();
+    motorLEFT = AFMS.getMotor(3);
+    motorRIGHT = AFMS.getMotor(4);
 }
 
-void Motors::moveForward(int speed, int duration) {
-    motorLEFT->setSpeed(speed);
-    motorRIGHT->setSpeed(speed);
-    motorLEFT->run(BACKWARD);
-    motorRIGHT->run(BACKWARD);
-    if (duration > 0) delay(duration);
-}
-
-void Motors::moveBackward(int speed, int duration) {
+void Motors::backward(int speed) {
     motorLEFT->setSpeed(speed);
     motorRIGHT->setSpeed(speed);
     motorLEFT->run(FORWARD);
     motorRIGHT->run(FORWARD);
-    if (duration > 0) delay(duration);
 }
 
-void Motors::turnLeft(int speed, int duration) {
+void Motors::forward(int speed) {
     motorLEFT->setSpeed(speed);
     motorRIGHT->setSpeed(speed);
-    motorLEFT->run(FORWARD);
+    motorLEFT->run(BACKWARD);
     motorRIGHT->run(BACKWARD);
-    delay(duration);
-    stop();
 }
 
-void Motors::turnRight(int speed, int duration) {
+void Motors::right(int speed) {
     motorLEFT->setSpeed(speed);
     motorRIGHT->setSpeed(speed);
     motorLEFT->run(BACKWARD);
     motorRIGHT->run(FORWARD);
-    delay(duration);
-    stop();
+}
+
+void Motors::left(int speed) {
+    motorLEFT->setSpeed(speed);
+    motorRIGHT->setSpeed(speed);
+    motorLEFT->run(FORWARD);
+    motorRIGHT->run(BACKWARD);
 }
 
 void Motors::stop() {
-    motorLEFT->setSpeed(0);
-    motorRIGHT->setSpeed(0);
     motorLEFT->run(RELEASE);
     motorRIGHT->run(RELEASE);
 }
